@@ -55,7 +55,6 @@ You need two terminal windows open to run this project locally.
 
 ### 1. Start the Backend
 ```bash
-cd song-analytics
 # Create and activate a virtual environment
 python3 -m venv venv
 source venv/bin/activate
@@ -66,9 +65,8 @@ uvicorn main:app --reload
 ```
 *The API will run on `http://localhost:8000`*
 
-### 2. Start the Frontend
+### 2. Start the Frontend (In a new terminal)
 ```bash
-cd song-analytics/frontend
 # Install dependencies
 npm install
 # Run the development server
@@ -96,10 +94,9 @@ Render uses standard Docker containers without the severe size limits.
 ### Deploy the Frontend to Vercel (Free)
 1. Go to **Vercel.com** and create a new Project.
 2. Select your repository.
-3. Edit the **Root Directory** to point to the `frontend` folder.
-4. Add an Environment Variable:
+3. Add an Environment Variable:
    - **Name:** `NEXT_PUBLIC_API_URL`
    - **Value:** *[Your Render URL]*
-5. Click **Deploy**.
+4. Click **Deploy**.
 
 Your blazing-fast Vercel frontend will now communicate seamlessly with your heavy-lifting Render Python backend.
