@@ -7,6 +7,7 @@ import HarmonicSection from "@/components/HarmonicSection";
 import TimbralSection from "@/components/TimbralSection";
 import { AnalysisResult } from "@/types/analysis";
 import { API_URL, formatTime } from "@/lib/utils";
+import Link from "next/link";
 
 export default function Home() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
@@ -98,7 +99,9 @@ export default function Home() {
               v1
             </span>
           </div>
-          <div className="text-xs text-gray-400 font-mono">@manov_ik</div>
+          <div className="text-xs text-gray-400 font-mono">
+            <Link href="https://github.com/manov_ik">@manov_ik</Link>{" "}
+          </div>
         </div>
       </nav>
 
