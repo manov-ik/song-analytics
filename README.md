@@ -49,30 +49,26 @@ When you upload a track, the engine processes the audio and returns a detailed d
 
 ---
 
-## 🚀 Running Locally
-
-You need two terminal windows open to run this project locally.
-
-### 1. Start the Backend
+### 1. Initial Setup
 ```bash
-# Create and activate a virtual environment
+# 1. Install Node.js dependencies
+npm install
+
+# 2. Create and activate a Python virtual environment
 python3 -m venv venv
 source venv/bin/activate
-# Install dependencies
-pip install -r requirements.txt
-# Run the FastAPI server
-uvicorn main:app --reload
-```
-*The API will run on `http://localhost:8000`*
 
-### 2. Start the Frontend (In a new terminal)
+# 3. Install Python dependencies
+pip install -r requirements.txt
+```
+
+### 2. Run the App
+I have configured a single command that runs both the FastAPI backend and the Next.js frontend simultaneously!
+
 ```bash
-# Install dependencies
-npm install
-# Run the development server
 npm run dev
 ```
-*The app will run on `http://localhost:3000`*
+*The app will automatically start on `http://localhost:3000`, and the backend will run alongside it.*
 
 ---
 
