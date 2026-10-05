@@ -49,6 +49,21 @@ When you upload a track, the engine processes the audio and returns a detailed d
 
 ---
 
+## 🚀 Quick Start (Docker)
+
+The absolute easiest way to run this project across any operating system (without worrying about Node.js or Python versions) is using Docker.
+
+1. Ensure [Docker Desktop](https://www.docker.com/products/docker-desktop/) is installed.
+2. Open a terminal in the project root and run:
+```bash
+docker-compose up --build
+```
+*The entire stack will compile and spin up instantly. The web app will be available at `http://localhost:3000`.*
+
+---
+
+## 💻 Manual Local Setup
+
 ### 1. Initial Setup
 ```bash
 # 1. Install Node.js dependencies
