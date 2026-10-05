@@ -80,10 +80,10 @@ async def analyze(file: UploadFile = File(...)):
         tmp_path = tmp.name
 
     try:
-        # Load
-        y, sr = librosa.load(tmp_path, sr=SR)
+        # Load (Limit to 60 seconds to prevent OOM on 512MB free tiers like Render)
+        y, sr = librosa.load(tmp_path, sr=SR, duration=60.0)
         if len(y) == 0:
-            raise HTTPException(400, "Audio file is empty.")
+            raise HTTPException(400, "Audio file is empty or corrupted.")
         y = librosa.util.normalize(y)
         duration = len(y) / sr
 
