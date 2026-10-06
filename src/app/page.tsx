@@ -93,14 +93,16 @@ export default function Home() {
         <div className="max-w-[1280px] mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="font-bold text-gray-900 text-sm tracking-tight font-sans">
-              Song Analytics
+              song-analytics
             </span>
-            <span className="text-[10px] bg-orange-100 text-orange-600 font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider font-mono">
+            {/* <span className="text-[10px] bg-orange-100 text-orange-600 font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider font-mono">
               v1
-            </span>
+            </span> */}
           </div>
           <div className="text-xs text-gray-400 font-mono">
-            <Link href="https://github.com/manov_ik">@manov_ik</Link>{" "}
+            <Link href="https://github.com/manov-ik/song-analytics" className="cursor-pointer hover:text-gray-600 transition-colors">
+              github
+            </Link>{" "}
           </div>
         </div>
       </nav>
@@ -186,7 +188,7 @@ export default function Home() {
                     />
                     <button
                       onClick={togglePlay}
-                      className="text-orange-500 hover:text-orange-600 w-7 h-7 flex items-center justify-center transition-colors bg-orange-50 hover:bg-orange-100 rounded-full shrink-0"
+                      className="text-orange-500 hover:text-orange-600 w-7 h-7 flex items-center justify-center transition-colors bg-orange-50 hover:bg-orange-100 rounded-full shrink-0 cursor-pointer"
                     >
                       {isPlaying ? (
                         <svg
@@ -218,7 +220,7 @@ export default function Home() {
                 <div className="flex gap-2">
                   <button
                     onClick={handleDownloadPDF}
-                    className="text-[12px] h-[38px] flex items-center justify-center font-semibold bg-orange-500 text-white hover:bg-orange-600 px-5 rounded-full transition-all font-sans"
+                    className="text-[12px] h-[38px] flex items-center justify-center font-semibold bg-orange-500 text-white hover:bg-orange-600 px-5 rounded-full transition-all font-sans cursor-pointer"
                   >
                     Download PDF
                   </button>
@@ -227,7 +229,7 @@ export default function Home() {
                       setResult(null);
                       setAudioUrl(null);
                     }}
-                    className="text-[12px] h-[38px] flex items-center justify-center font-medium text-gray-600 hover:text-gray-900 border border-gray-200 hover:border-gray-300 px-5 rounded-full transition-all font-sans bg-white"
+                    className="text-[12px] h-[38px] flex items-center justify-center font-medium text-gray-600 hover:text-gray-900 border border-gray-200 hover:border-gray-300 px-5 rounded-full transition-all font-sans bg-white cursor-pointer"
                   >
                     New Analysis
                   </button>

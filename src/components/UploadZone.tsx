@@ -79,7 +79,7 @@ export default function UploadZone({ onAnalyze, loading }: UploadZoneProps) {
               <p className="text-xs text-gray-400 mt-2 font-mono uppercase tracking-wider">MP3 · WAV · FLAC · M4A · OGG</p>
             </div>
             <button
-              className="text-[13px] bg-gray-900 text-white px-5 py-2.5 rounded-full hover:bg-gray-800 transition-colors font-medium mt-2 font-sans"
+              className="text-[13px] bg-gray-900 text-white px-5 py-2.5 rounded-full hover:bg-gray-800 transition-colors font-medium mt-2 font-sans cursor-pointer"
               onClick={(e) => { e.stopPropagation(); document.getElementById("fileInput")?.click(); }}
             >
               Browse files
@@ -93,7 +93,7 @@ export default function UploadZone({ onAnalyze, loading }: UploadZoneProps) {
         <button
           onClick={handleSubmit}
           disabled={loading}
-          className="flex items-center gap-2 bg-gray-900 hover:bg-gray-800 disabled:bg-gray-200 disabled:text-gray-400 text-white font-medium px-6 py-2.5 rounded-full transition-colors text-[13px] font-sans"
+          className="flex items-center gap-2 bg-gray-900 hover:bg-gray-800 disabled:bg-gray-200 disabled:text-gray-400 text-white font-medium px-6 py-2.5 rounded-full transition-colors text-[13px] font-sans cursor-pointer disabled:cursor-not-allowed"
         >
           {loading ? (
             <>
