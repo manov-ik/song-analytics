@@ -1,6 +1,7 @@
 "use client";
 import StatCard from "@/components/StatCard";
 import MfccChart from "@/components/MfccChart";
+import InfoTooltip from "@/components/InfoTooltip";
 import { AnalysisResult } from "@/types/analysis";
 
 interface TimbralSectionProps {
@@ -22,7 +23,10 @@ export default function TimbralSection({ result }: TimbralSectionProps) {
       {/* MFCC bar chart */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 break-inside-avoid">
         <div className="mb-4">
-          <h3 className="text-sm font-semibold text-gray-800 font-sans">Timbral Fingerprint (MFCC)</h3>
+          <h3 className="text-sm font-semibold text-gray-800 font-sans inline-flex items-center">
+            Timbral Fingerprint (MFCC)
+            <InfoTooltip text="13 Mel-Frequency Cepstral Coefficients that compactly represent the short-term power spectrum. Captures the exact 'texture' or 'timbre' of the song." />
+          </h3>
           <p className="text-xs text-gray-400 mt-0.5 font-mono">13 Mel-Frequency Cepstral Coefficients — mean values</p>
         </div>
         <MfccChart mean={result.mfcc.mean} />

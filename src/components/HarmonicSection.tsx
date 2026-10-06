@@ -2,6 +2,7 @@
 import StatCard from "@/components/StatCard";
 import WaveformChart from "@/components/WaveformChart";
 import ChromaChart from "@/components/ChromaChart";
+import InfoTooltip from "@/components/InfoTooltip";
 import { AnalysisResult } from "@/types/analysis";
 
 interface HarmonicSectionProps {
@@ -19,7 +20,10 @@ export default function HarmonicSection({ result, currentTime = 0, onSeek }: Har
         {/* Chroma radar */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 break-inside-avoid">
           <div className="mb-2">
-            <h3 className="text-sm font-semibold text-gray-800 font-sans">Chroma / Pitch Classes</h3>
+            <h3 className="text-sm font-semibold text-gray-800 font-sans inline-flex items-center">
+              Chroma / Pitch Classes
+              <InfoTooltip text="Projects the entire audio spectrum onto 12 bins representing the 12 distinct semitones (pitch classes) of the musical octave. Shows exactly which notes are most prominent." />
+            </h3>
             <p className="text-xs text-gray-400 mt-0.5 font-mono">Relative presence of each musical note</p>
           </div>
           <ChromaChart labels={result.chroma.labels} grid={result.chroma.grid} />
@@ -28,7 +32,10 @@ export default function HarmonicSection({ result, currentTime = 0, onSeek }: Har
         {/* Energy + Beats */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 break-inside-avoid">
           <div className="mb-4">
-            <h3 className="text-sm font-semibold text-gray-800 font-sans">Energy + Beats Overview</h3>
+            <h3 className="text-sm font-semibold text-gray-800 font-sans inline-flex items-center">
+              Energy + Beats Overview
+              <InfoTooltip text="Plots the loudness (RMS) and dynamic range over time, overlaid with detected beat events." />
+            </h3>
             <p className="text-xs text-gray-400 mt-0.5 font-mono">Energy curve with beat position markers</p>
           </div>
         <div className="relative w-full">

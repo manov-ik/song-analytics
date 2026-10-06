@@ -3,6 +3,7 @@ import StatCard from "@/components/StatCard";
 import WaveformChart from "@/components/WaveformChart";
 import MelHeatmap from "@/components/MelHeatmap";
 import OnsetChart from "@/components/OnsetChart";
+import InfoTooltip from "@/components/InfoTooltip";
 import { AnalysisResult } from "@/types/analysis";
 import { formatDuration } from "@/lib/utils";
 
@@ -36,9 +37,14 @@ export default function OverviewSection({ result, currentTime = 0, onSeek }: Ove
       {/* RMS Energy Chart */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 break-inside-avoid">
         <div className="flex items-center justify-between mb-4">
-          <div>
-            <h3 className="text-sm font-semibold text-gray-800 font-sans">Energy Flow</h3>
-            <p className="text-xs text-gray-400 mt-0.5 font-mono">RMS amplitude over time · beat markers shown</p>
+          <div className="flex items-center gap-2">
+            <div>
+              <h3 className="text-sm font-semibold text-gray-800 font-sans inline-flex items-center">
+                Energy Flow
+                <InfoTooltip text="Plots the loudness (RMS) and dynamic range over time, overlaid with detected beat events." />
+              </h3>
+              <p className="text-xs text-gray-400 mt-0.5 font-mono">RMS amplitude over time · beat markers shown</p>
+            </div>
           </div>
           <div className="flex items-center gap-4 text-xs text-gray-400 font-mono">
             <span className="flex items-center gap-1.5">
@@ -70,24 +76,64 @@ export default function OverviewSection({ result, currentTime = 0, onSeek }: Ove
       {/* Mel Spectrogram */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 break-inside-avoid">
         <div className="flex items-center justify-between mb-4">
-          <div>
-            <h3 className="text-sm font-semibold text-gray-800 font-sans">Mel Spectrogram</h3>
-            <p className="text-xs text-gray-400 mt-0.5 font-mono">Perceptual frequency content over time (magma scale)</p>
+          <div className="flex items-center gap-2">
+            <div>
+              <h3 className="text-sm font-semibold text-gray-800 font-sans inline-flex items-center">
+                Mel Spectrogram
+                <InfoTooltip text="A visual representation of the spectrum of frequencies as it varies with time." />
+              </h3>
+              <p className="text-xs text-gray-400 mt-0.5 font-mono">Perceptual frequency content over time (magma scale)</p>
+            </div>
           </div>
           <div className="flex items-center gap-1.5 text-xs text-gray-400 font-mono">
             <div className="w-16 h-3 rounded" style={{ background: "linear-gradient(to right, #000004, #3b0f70, #8c2981, #de4968, #fe9f6d, #fcfdbf)" }} />
             <span>low → high</span>
           </div>
         </div>
-        <MelHeatmap grid={result.mel.grid} />
+        
+        <div className="relative w-full flex">
+          <div className="w-10 flex flex-col justify-between text-[10px] text-gray-400 font-mono text-right pr-2 py-1 h-[160px]">
+            <span>8kHz</span>
+            <span>4kHz</span>
+            <span>0Hz</span>
+          </div>
+          <div 
+            className="relative flex-1 cursor-crosshair"
+            onClick={(e) => {
+              if (!onSeek || !result.duration) return;
+              const rect = e.currentTarget.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              if (x >= 0 && x <= rect.width) {
+                onSeek((x / rect.width) * result.duration);
+              }
+            }}
+          >
+            {currentTime > 0 && result.duration > 0 && (
+              <div 
+                className="absolute top-0 bottom-0 w-[2px] bg-red-500 z-10 pointer-events-none"
+                style={{ left: `calc(100% * ${Math.min(1, currentTime / result.duration)})` }} 
+              />
+            )}
+            <MelHeatmap grid={result.mel.grid} />
+            <div className="flex justify-between text-[10px] text-gray-400 font-mono mt-1 px-1">
+              <span>0:00</span>
+              <span>{formatDuration(result.duration)}</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Onset Strength */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 break-inside-avoid">
-        <div className="mb-4">
-          <h3 className="text-sm font-semibold text-gray-800 font-sans">Beat / Onset Strength</h3>
-          <p className="text-xs text-gray-400 mt-0.5 font-mono">Peaks indicate strong beats and transients</p>
-        </div>
+          <div className="flex items-center gap-2">
+            <div>
+              <h3 className="text-sm font-semibold text-gray-800 font-sans inline-flex items-center">
+                Beat / Onset Strength
+                <InfoTooltip text="Pinpoints the exact moments of sudden energy bursts (transients/beats), measuring the onset strength across the duration of the track." />
+              </h3>
+              <p className="text-xs text-gray-400 mt-0.5 font-mono">Peaks indicate strong beats and transients</p>
+            </div>
+          </div>
         <div className="relative w-full">
           {currentTime > 0 && result.duration > 0 && (
             <div 
