@@ -19,19 +19,19 @@ export default function OverviewSection({ result, currentTime = 0, onSeek }: Ove
       <h2 className="text-xl font-bold font-sans text-gray-900 ">Overview</h2>
       {/* Stats row */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-        <StatCard label="Tempo" value={`${result.tempo} BPM`} accent />
+        <StatCard label="Tempo" value={`${result.tempo} BPM`} accent tooltip="Calculates the exact beats-per-minute of the track." />
         <StatCard label="Duration" value={formatDuration(result.duration)} />
-        <StatCard label="Key" value={result.key} sub={`${(result.key_confidence * 100).toFixed(0)}% conf.`} />
-        <StatCard label="Loudness" value={`${result.loudness_lufs} LUFS`} />
-        <StatCard label="Beats" value={`${result.beat_count}`} sub="detected beats" />
+        <StatCard label="Key" value={result.key} sub={`${(result.key_confidence * 100).toFixed(0)}% conf.`} tooltip="Identifies the musical key using the Krumhansl-Schmuckler key-finding algorithm." />
+        <StatCard label="Loudness" value={`${result.loudness_lufs} LUFS`} tooltip="Estimates the overall perceived loudness of the track." />
+        <StatCard label="Beats" value={`${result.beat_count}`} sub="detected beats" tooltip="Total number of detected rhythmic beat events." />
       </div>
 
       {/* Second row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <StatCard label="Dynamic Range" value={`${result.dynamic_range_db} dB`} />
-        <StatCard label="Avg Energy" value={result.avg_energy.toFixed(4)} />
-        <StatCard label="Peak Energy" value={result.max_energy.toFixed(4)} />
-        <StatCard label="Avg Centroid" value={`${(result.avg_centroid_hz / 1000).toFixed(2)} kHz`} sub="brightness" />
+        <StatCard label="Dynamic Range" value={`${result.dynamic_range_db} dB`} tooltip="The difference between the loudest and quietest parts of the song." />
+        <StatCard label="Avg Energy" value={result.avg_energy.toFixed(4)} tooltip="Average RMS (Root Mean Square) energy across the track." />
+        <StatCard label="Peak Energy" value={result.max_energy.toFixed(4)} tooltip="Maximum RMS energy detected." />
+        <StatCard label="Avg Centroid" value={`${(result.avg_centroid_hz / 1000).toFixed(2)} kHz`} sub="brightness" tooltip="The 'center of mass' of the spectrum, indicating the overall perceived 'brightness' of the sound." />
       </div>
 
       {/* RMS Energy Chart */}
@@ -92,7 +92,7 @@ export default function OverviewSection({ result, currentTime = 0, onSeek }: Ove
         </div>
         
         <div className="relative w-full flex">
-          <div className="w-10 flex flex-col justify-between text-[10px] text-gray-400 font-mono text-right pr-2 py-1 h-[160px]">
+          <div className="w-10 flex flex-col justify-between text-[10px] text-gray-400 font-mono text-right pr-2 py-1 h-[280px]">
             <span>8kHz</span>
             <span>4kHz</span>
             <span>0Hz</span>

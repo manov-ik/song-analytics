@@ -52,7 +52,7 @@ export default React.memo(function MelHeatmap({ grid }: MelHeatmapProps) {
     <canvas
       ref={canvasRef}
       className="w-full rounded-lg"
-      style={{ imageRendering: "pixelated", height: 160 }}
+      style={{ imageRendering: "pixelated", height: 280 }}
     />
   );
 });

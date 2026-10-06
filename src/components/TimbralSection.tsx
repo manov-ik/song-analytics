@@ -14,10 +14,10 @@ export default function TimbralSection({ result }: TimbralSectionProps) {
       <h2 className="text-xl font-bold font-sans text-gray-900 mt-8">Timbral Features</h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <StatCard label="MFCC-1 (Energy)" value={result.mfcc.mean[0].toFixed(1)} accent />
-        <StatCard label="MFCC-2 (Brightness)" value={result.mfcc.mean[1].toFixed(1)} />
-        <StatCard label="Avg ZCR" value={result.avg_zcr.toFixed(4)} sub="noise indicator" />
-        <StatCard label="Loudness" value={`${result.loudness_lufs} LUFS`} />
+        <StatCard label="MFCC-1 (Energy)" value={result.mfcc.mean[0].toFixed(1)} accent tooltip="The first MFCC coefficient, strongly correlated with the overall energy of the track." />
+        <StatCard label="MFCC-2 (Brightness)" value={result.mfcc.mean[1].toFixed(1)} tooltip="The second MFCC coefficient, highly correlated with the spectral brightness and tonal balance." />
+        <StatCard label="Avg ZCR" value={result.avg_zcr.toFixed(4)} sub="noise indicator" tooltip="Tracks the rate of sign-changes along a signal, indicating noisiness." />
+        <StatCard label="Loudness" value={`${result.loudness_lufs} LUFS`} tooltip="Estimates the overall perceived loudness of the track." />
       </div>
 
       {/* MFCC bar chart */}

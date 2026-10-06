@@ -15,11 +15,10 @@ export default function SpectralSection({ result, currentTime = 0, onSeek }: Spe
   return (
     <div className="space-y-6">
       <h2 className="text-xl font-bold font-sans text-gray-900 mt-8">Spectral Features</h2>
-      {/* Spectral stats */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-        <StatCard label="Spectral Centroid" value={`${(result.avg_centroid_hz / 1000).toFixed(2)} kHz`} sub="avg brightness" accent />
-        <StatCard label="Avg ZCR" value={result.avg_zcr.toFixed(4)} sub="zero crossing rate" />
-        <StatCard label="Dynamic Range" value={`${result.dynamic_range_db} dB`} sub="peak vs mean" />
+        <StatCard label="Spectral Centroid" value={`${(result.avg_centroid_hz / 1000).toFixed(2)} kHz`} sub="avg brightness" accent tooltip="The 'center of mass' of the spectrum, indicating the overall perceived 'brightness' of the sound." />
+        <StatCard label="Avg ZCR" value={result.avg_zcr.toFixed(4)} sub="zero crossing rate" tooltip="Tracks the rate of sign-changes along a signal, acting as a strong indicator of noisiness and percussive content." />
+        <StatCard label="Dynamic Range" value={`${result.dynamic_range_db} dB`} sub="peak vs mean" tooltip="The difference between the loudest and quietest parts of the song." />
       </div>
 
       {/* Spectral shape */}

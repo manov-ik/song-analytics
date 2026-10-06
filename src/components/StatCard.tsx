@@ -1,17 +1,22 @@
 import React from "react";
+import InfoTooltip from "./InfoTooltip";
 
 interface StatCardProps {
   label: string;
   value: string;
   sub?: string;
   accent?: boolean;
+  tooltip?: string;
   trend?: { value: string; up: boolean };
 }
 
-export default React.memo(function StatCard({ label, value, sub, accent, trend }: StatCardProps) {
+export default React.memo(function StatCard({ label, value, sub, accent, tooltip, trend }: StatCardProps) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 flex flex-col shadow-sm transition-shadow">
-      <div className="text-[14px] text-gray-500 font-sans mb-3">{label}</div>
+    <div className="bg-white rounded-2xl border border-gray-100 p-6 flex flex-col shadow-sm transition-shadow break-inside-avoid">
+      <div className="text-[14px] text-gray-500 font-sans mb-3 flex items-center">
+        {label}
+        {tooltip && <InfoTooltip text={tooltip} />}
+      </div>
       <div className={`text-[42px] leading-none font-light tracking-[-0.04em] font-sans ${accent ? "text-orange-500" : "text-gray-900"}`}>
         {value}
       </div>
